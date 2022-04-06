@@ -14,3 +14,10 @@
   </a>
 </p>
 
+## ドキュメントページ
+
+[practice-badgesドキュメント](https://heri3x.github.io/practice-badges/)
+
+## ライセンス
+
+[MITライセンス](./LICENSE)
