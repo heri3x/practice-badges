@@ -1,2 +1,2 @@
 # practice-badges
-バッジの練習用
+バッジの練習用。
