@@ -10,7 +10,10 @@
 
 <p align="center">
   <a href="https://github.com/heri3x/practice-badges/releases/latest">
-    <img src="https://img.shields.io/github/v/release/heri3x/practice-badges?display_name=release&style=for-the-badge" alt="GitHub release (latest by date)" />
+    <img src="https://img.shields.io/github/v/release/heri3x/practice-badges?display_name=release" alt="GitHub release (latest by date)" />
+  </a>
+  <a href="https://github.com/heri3x/practice-badges/actions/workflows/github-actions-demo.yml">
+    <img src="https://github.com/heri3x/practice-badges/actions/workflows/github-actions-demo.yml/badge.svg" alt="GitHub Actions Demo" />
   </a>
 </p>
 
