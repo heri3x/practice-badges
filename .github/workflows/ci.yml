@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  # mainブランチへのpush / Actionsページからボタンで起動
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+
+jobs:
+  job-01:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "event_name| ${{ github.event_name }}"
+      - run: echo 'OS| ${{ runner.os }}'
+      - run: echo "repo| ${{ github.repository }}."
+      - run: echo "branch| ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install papermill
+        run: |
+          pip3 install papermill
+      - name: Run Script
+        run: |
+          cd ${{ github.workspace }}/tools
+          papermill --log-output make-zip.ipynb tmp/tmp.ipynb
+      - run: echo "exit status| ${{ job.status }}"
+
