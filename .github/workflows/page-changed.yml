@@ -1,15 +1,16 @@
+name: page-changed
 on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "'event_name:' ${{ github.event_name }}"
-      - run: echo ''OS:' ${{ runner.os }}'
-      - run: echo "'repo:' ${{ github.repository }}."
-      - run: echo "'branch:' ${{ github.ref }}"
+      - run: echo "event_name| ${{ github.event_name }}"
+      - run: echo 'OS| ${{ runner.os }}'
+      - run: echo "repo| ${{ github.repository }}."
+      - run: echo "branch| ${{ github.ref }}"
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "'exit status:' ${{ job.status }}"
+      - run: echo "exit status| ${{ job.status }}"
