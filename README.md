@@ -3,7 +3,7 @@
 バッジの練習用。
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/heri3x/practice-badges?display_name=release)](https://github.com/heri3x/practice-badges/releases/latest)
-[![GitHub Actions Demo](https://github.com/heri3x/practice-badges/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/heri3x/practice-badges/actions/workflows/github-actions-demo.yml)
+[![GitHub Actions Demo](https://github.com/heri3x/practice-badges/workflows/GitHub%20Actions%20Demo/badge.svg)](https://github.com/heri3x/practice-badges/actions/workflows/github-actions-demo.yml)
 [![pages-build-deployment](https://github.com/heri3x/practice-badges/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/heri3x/practice-badges/actions/workflows/pages/pages-build-deployment)
 
 ## ドキュメントページ
