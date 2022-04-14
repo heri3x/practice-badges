@@ -49,21 +49,17 @@ jobs:
     - name: Run Script
       run: |
         pwd
-        git status
-      working-directory: gh-pages
-
-    - name: Run Script
-      run: |
-        pwd
         papermill --log-output make-zip.ipynb tmp/tmp.ipynb
         mv tmp/test.zip ../../gh-pages/
       working-directory: main/tools
 
-    - name: Run Script
-      run: |
-        pwd
-        git status
-      working-directory: gh-pages
+    - name: Commit gh-pages files
+      uses: EndBug/add-and-commit@v9
+      with:
+        cwd: gh-pages
+        add: '.'
+        message: 'update test.zip'
+        push: true
 
     - run: echo "exit status| ${{ job.status }}"
 
