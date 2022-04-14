@@ -11,17 +11,20 @@ jobs:
   job-01:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "event_name| ${{ github.event_name }}"
-      - run: echo 'OS| ${{ runner.os }}'
-      - run: echo "repo| ${{ github.repository }}."
-      - run: echo "branch| ${{ github.ref }}"
+      - name: Check Environment
+        run: |
+          echo "event_name| ${{ github.event_name }}"
+          echo 'OS| ${{ runner.os }}'
+          echo "repo| ${{ github.repository }}."
+          echo "branch| ${{ github.ref }}"
+          echo "checkout dir| ${{ github.workspace }}"
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Install papermill
         run: |
           python3 --version
           pip3 --version
-          pip3 install papermill
+          pip3 install jupyterlab papermill
       - name: Run Script
         run: |
           cd ${{ github.workspace }}/tools
