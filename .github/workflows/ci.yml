@@ -19,26 +19,45 @@ jobs:
 
     - name: Check Environment
       run: |
+        pwd
         echo "event_name| ${{ github.event_name }}"
         echo 'OS| ${{ runner.os }}'
         echo "repo| ${{ github.repository }}."
         echo "branch| ${{ github.ref }}"
         echo "checkout dir| ${{ github.workspace }}"
 
-    - name: Check out repository code
+    - name: Checkout main repo
       uses: actions/checkout@v3
+      with:
+        path: main
+        ref: main
+
+    - name: Checkout gh-pages repo
+      uses: actions/checkout@v3
+      with:
+        path: gh-pages
+        ref: gh-pages
 
     - name: Install Requirements
       run: |
+        pwd
         python3 --version
         pip3 --version
         pip3 install -r requirements.txt
-      working-directory: tools
+      working-directory: main/tools
 
     - name: Run Script
       run: |
+        pwd
         papermill --log-output make-zip.ipynb tmp/tmp.ipynb
-      working-directory: tools
+        mv tmp/test.zip ../gh-pages/
+      working-directory: main/tools
+
+    - name: Run Script
+      run: |
+        pwd
+        git status
+      working-directory: main/gh-pages
 
     - run: echo "exit status| ${{ job.status }}"
 
@@ -48,7 +67,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2.0.2
       env:
         SLACK_CHANNEL: practice-badges-ci
-        SLACK_TITLE: CI Success
+        SLACK_TITLE: CI処理成功
         SLACK_COLOR: good
 
     # 失敗
@@ -57,5 +76,5 @@ jobs:
       if: failure()
       env:
         SLACK_CHANNEL: practice-badges-ci
-        SLACK_TITLE: CI Failure
+        SLACK_TITLE: CI処理失敗
         SLACK_COLOR: danger
