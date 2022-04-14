@@ -1,12 +1,12 @@
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "event_name: ${{ github.event_name }}"
-      - run: echo "OS: ${{ runner.os }}"
-      - run: echo "repo: ${{ github.repository }}."
-      - run: echo "branch: ${{ github.ref }}"
+      - run: echo "'event_name:' ${{ github.event_name }}"
+      - run: echo ''OS:' ${{ runner.os }}'
+      - run: echo "'repo:' ${{ github.repository }}."
+      - run: echo "'branch:' ${{ github.ref }}"
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
