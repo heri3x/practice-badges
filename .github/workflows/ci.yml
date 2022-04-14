@@ -50,14 +50,20 @@ jobs:
       run: |
         pwd
         git status
-      working-directory: main/gh-pages
+      working-directory: gh-pages
 
     - name: Run Script
       run: |
         pwd
         papermill --log-output make-zip.ipynb tmp/tmp.ipynb
-        mv tmp/test.zip ../gh-pages/
+        mv tmp/test.zip ../../gh-pages/
       working-directory: main/tools
+
+    - name: Run Script
+      run: |
+        pwd
+        git status
+      working-directory: gh-pages
 
     - run: echo "exit status| ${{ job.status }}"
 
