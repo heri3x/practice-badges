@@ -15,12 +15,12 @@ $ sudo apt update && sudo apt upgrade -y
 $ sudo apt install -y build-essential python3 python3-pip python3-venv libpython3-dev
 ```
 
-### venv上に JupyterLab と papermill をインストール
+### venv上に必要なツールをインストール
 
 ```shell
 $ python3 -m venv venv-tools
 $ source venv-tools/bin/activate
-(venv-tools) $ pip3 install jupyterlab papermill
+(venv-tools) $ pip3 install -r requirements.txt
 ```
 
 ## Jupyterでツール実行

@@ -11,6 +11,7 @@ jobs:
   job-01:
     runs-on: ubuntu-latest
     steps:
+
       - name: Check Environment
         run: |
           echo "event_name| ${{ github.event_name }}"
@@ -18,15 +19,20 @@ jobs:
           echo "repo| ${{ github.repository }}."
           echo "branch| ${{ github.ref }}"
           echo "checkout dir| ${{ github.workspace }}"
+
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Install papermill
+
+      - name: Install Requirements
         run: |
           python3 --version
           pip3 --version
-          pip3 install jupyterlab papermill
+          pip3 install -r requirements.txt
+        working-directory: tools
+
       - name: Run Script
         run: |
-          cd ${{ github.workspace }}/tools
           papermill --log-output make-zip.ipynb tmp/tmp.ipynb
+        working-directory: tools
+
       - run: echo "exit status| ${{ job.status }}"
