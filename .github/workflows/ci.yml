@@ -7,32 +7,55 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  # SlackApp の WebHook URL
+  # CI結果のSlack報告用
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 jobs:
   job-01:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Check Environment
-        run: |
-          echo "event_name| ${{ github.event_name }}"
-          echo 'OS| ${{ runner.os }}'
-          echo "repo| ${{ github.repository }}."
-          echo "branch| ${{ github.ref }}"
-          echo "checkout dir| ${{ github.workspace }}"
+    - name: Check Environment
+      run: |
+        echo "event_name| ${{ github.event_name }}"
+        echo 'OS| ${{ runner.os }}'
+        echo "repo| ${{ github.repository }}."
+        echo "branch| ${{ github.ref }}"
+        echo "checkout dir| ${{ github.workspace }}"
 
-      - name: Check out repository code
-        uses: actions/checkout@v3
+    - name: Check out repository code
+      uses: actions/checkout@v3
 
-      - name: Install Requirements
-        run: |
-          python3 --version
-          pip3 --version
-          pip3 install -r requirements.txt
-        working-directory: tools
+    - name: Install Requirements
+      run: |
+        python3 --version
+        pip3 --version
+        pip3 install -r requirements.txt
+      working-directory: tools
 
-      - name: Run Script
-        run: |
-          papermill --log-output make-zip.ipynb tmp/tmp.ipynb
-        working-directory: tools
+    - name: Run Script
+      run: |
+        papermill --log-output make-zip.ipynb tmp/tmp.ipynb
+      working-directory: tools
 
-      - run: echo "exit status| ${{ job.status }}"
+    - run: echo "exit status| ${{ job.status }}"
+
+    # 成功
+    - name: Success
+      if: success()
+      uses: rtCamp/action-slack-notify@v2.0.2
+      env:
+        SLACK_CHANNEL: practice-badges-ci
+        SLACK_TITLE: CI Success
+        SLACK_COLOR: good
+
+    # 失敗
+    - name: Failure
+      uses: rtCamp/action-slack-notify@v2.0.2
+      if: failure()
+      env:
+        SLACK_CHANNEL: practice-badges-ci
+        SLACK_TITLE: CI Failure
+        SLACK_COLOR: danger
