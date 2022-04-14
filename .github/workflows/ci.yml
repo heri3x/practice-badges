@@ -50,7 +50,7 @@ jobs:
       run: |
         pwd
         papermill --log-output make-zip.ipynb tmp/tmp.ipynb
-        mv tmp/test.zip ../../gh-pages/
+        mv tmp/test.zip ../../gh-pages/docs/
       working-directory: main/tools
 
     - name: Commit gh-pages files
@@ -58,6 +58,8 @@ jobs:
       with:
         cwd: gh-pages
         add: '.'
+        author_name: 'github-actions'
+        author_email: 'github-actions[bot]@users.noreply.github.com'
         message: 'update test.zip'
         push: true
 
