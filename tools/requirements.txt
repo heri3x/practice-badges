@@ -46,7 +46,7 @@ notebook-shim==0.1.0
 packaging==21.3
 pandocfilters==1.5.0
 papermill==2.3.4
-parso==0.8.3
+parso==0.8.5
 pexpect==4.8.0
 pickleshare==0.7.5
 prometheus-client==0.14.1
